@@ -1,0 +1,23 @@
+server:
+  port: 9060
+
+spring:
+  application:
+    name: booking
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://io-surf:3306/Booking
+    username: nji
+    password: 1011ADmysql!
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+
+eureka:
+  instance:
+    host: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9030/eureka

@@ -1,0 +1,30 @@
+server:
+  port: 9020
+
+eureka:
+  instance:
+    host: localhost
+  client:
+    register-with-eureka: false
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: course
+          uri: http://localhost:9040/api/v1/courses**
+          predicates:
+            - Path=/course/**
+        - id: student
+          uri: http://localhost:9050
+          predicates:
+            - Path=/student/**
+        - id: booking
+          uri: http://localhost:9060
+          predicates:
+            - Path=/booking/**
