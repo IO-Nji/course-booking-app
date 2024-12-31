@@ -8,7 +8,8 @@
             "mainClass": "io.nji.configserver.ConfigServerApplication",
             "projectName": "config-server",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=55282 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=config-server"
         },
         {
             "type": "java",
@@ -17,6 +18,17 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "io.nji.discovery.DiscoveryApplication",
             "projectName": "discovery",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=55432 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=discovery"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-CourseApplication<course>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "io.nji.course.CourseApplication",
+            "projectName": "course",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
