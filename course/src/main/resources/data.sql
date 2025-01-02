@@ -1,0 +1,10 @@
+INSERT INTO course (title, description, skill_level) VALUES ('Java Programming', 'Introduction to Java programming', 1);
+INSERT INTO course (title, description, skill_level) VALUES ('Python Programming', 'Introduction to Python programming', 1);
+INSERT INTO course (title, description, skill_level) VALUES ('Web Development', 'Introduction to web development with HTML, CSS, and JavaScript', 2);
+INSERT INTO course (title, description, skill_level) VALUES ('Data Structures', 'Introduction to data structures and algorithms', 2);
+INSERT INTO course (title, description, skill_level) VALUES ('Database Systems', 'Introduction to database systems and SQL', 2);
+INSERT INTO course (title, description, skill_level) VALUES ('Machine Learning', 'Introduction to machine learning concepts and techniques', 3);
+INSERT INTO course (title, description, skill_level) VALUES ('Artificial Intelligence', 'Introduction to artificial intelligence and its applications', 3);
+INSERT INTO course (title, description, skill_level) VALUES ('Mobile App Development', 'Introduction to mobile app development with Android', 2);
+INSERT INTO course (title, description, skill_level) VALUES ('Cloud Computing', 'Introduction to cloud computing and its services', 3);
+INSERT INTO course (title, description, skill_level) VALUES ('Cybersecurity', 'Introduction to cybersecurity principles and practices', 3);

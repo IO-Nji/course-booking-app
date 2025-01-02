@@ -51,4 +51,15 @@ public class CourseService {
         logger.info("Deleted course");
     }
 
+    public CourseDTO updateCourse(Long courseId, CourseDTO courseDTO) {
+        logger.info("Updating course with id: {}", courseId);
+        Course course = courseRepository.findById(courseId)
+                .orElseThrow(() -> new RuntimeException("Course not found with id: " + courseId));
+        course.setTitle(courseDTO.getTitle());
+        course.setDescription(courseDTO.getDescription());
+        course.setSkillLevel(courseDTO.getSkillLevel());
+        Course updatedCourse = courseRepository.save(course);
+        logger.info("Updated course");
+        return courseMapper.toDTO(updatedCourse);
+    }
 }

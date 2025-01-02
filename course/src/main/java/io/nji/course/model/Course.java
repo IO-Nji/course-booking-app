@@ -31,8 +31,8 @@ public class Course {
     // The title of the course, cannot be null
     @Column(name = "title", nullable = false)
     private String title;
-    @Column(name = "descripption", nullable = false)
+    @Column(name = "description", nullable = false)
     private String description;
     @Column(name = "skillLevel", nullable = false)
     private int skillLevel;
-}
+} 
