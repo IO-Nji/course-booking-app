@@ -30,6 +30,17 @@
             "mainClass": "io.nji.course.CourseApplication",
             "projectName": "course",
             "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=65157 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=course"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-StudentApplication<student>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "io.nji.student.StudentApplication",
+            "projectName": "student",
+            "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
     ]

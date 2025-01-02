@@ -28,7 +28,7 @@ public class Course {
     )
     @Column(name = "course_id", updatable = false)
     private Long courseId;
-    // The title of the course, cannot be null
+    
     @Column(name = "title", nullable = false)
     private String title;
     @Column(name = "description", nullable = false)

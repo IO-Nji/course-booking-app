@@ -24,8 +24,11 @@ public class CourseService {
     private CourseMapper courseMapper;
 
     public List<CourseDTO> getAllCourses() {
+        logger.info("Getting all courses");
         List<Course> courses = courseRepository.findAll();
-        return courseMapper.toDTOList(courses);
+        List<CourseDTO> courseDTOs = courseMapper.toDTOList(courses);
+        logger.info("Received courses: {}", courseDTOs);
+        return courseDTOs;
     }
 
     public CourseDTO getCourseById(Long courseId) {

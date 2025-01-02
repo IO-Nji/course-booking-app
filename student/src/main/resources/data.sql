@@ -1,0 +1,10 @@
+INSERT INTO student (name, email) VALUES ('John Doe', 'john.doe@example.com');
+INSERT INTO student (name, email) VALUES ('Jane Smith', 'jane.smith@example.com');
+INSERT INTO student (name, email) VALUES ('Michael Johnson', 'michael.johnson@example.com');
+INSERT INTO student (name, email) VALUES ('Emily Davis', 'emily.davis@example.com');
+INSERT INTO student (name, email) VALUES ('Daniel Brown', 'daniel.brown@example.com');
+INSERT INTO student (name, email) VALUES ('Emma Wilson', 'emma.wilson@example.com');
+INSERT INTO student (name, email) VALUES ('Matthew Taylor', 'matthew.taylor@example.com');
+INSERT INTO student (name, email) VALUES ('Olivia Anderson', 'olivia.anderson@example.com');
+INSERT INTO student (name, email) VALUES ('James Thomas', 'james.thomas@example.com');
+INSERT INTO student (name, email) VALUES ('Sophia Martinez', 'sophia.martinez@example.com');
