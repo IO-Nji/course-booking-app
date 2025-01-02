@@ -17,10 +17,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.nji.student.dto.CourseDTO;
 import io.nji.student.dto.StudentDTO;
 import io.nji.student.service.StudentService;
 import io.nji.student.validator.StudentValidator;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/student")
@@ -71,4 +74,21 @@ public class StudentController {
         logger.info("Updated student");
         return updatedStudent;
     }
+
+        // View All Courses
+   @GetMapping("/viewCourses")
+   public List<CourseDTO> viewAllCourses() {
+       return studentService.viewAllCourses();
+   }
+
+   @GetMapping("getCourseById/{id}")
+   public CourseDTO getCourseById(@PathVariable("id") Long courseId) {
+       return studentService.viewCourseById(courseId);
+   }
+   public String getMethodName(@RequestParam String param) {
+       return new String();
+   }
+   
+
+
 }

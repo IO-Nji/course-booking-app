@@ -1,5 +1,6 @@
 package io.nji.student.service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,7 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import io.nji.student.dto.CourseDTO;
 import io.nji.student.dto.StudentDTO;
 import io.nji.student.mapper.StudentMapper;
 import io.nji.student.model.Student;
@@ -15,6 +18,9 @@ import io.nji.student.repository.StudentRepository;;
 
 @Service
 public class StudentService {
+
+        @Autowired
+        private RestTemplate restTemplate;
 
         private static final Logger logger = LoggerFactory.getLogger(StudentService.class);
 
@@ -65,4 +71,18 @@ public class StudentService {
         logger.info("Updated student");
         return studentMapper.toDTO(updatedStudent);
     }
+
+    public List<CourseDTO> viewAllCourses() {
+        String url = "http://localhost:9040/course/getAll";
+        CourseDTO[] courseDTOs = restTemplate.getForObject(url, CourseDTO[].class);
+        return courseDTOs != null ? Arrays.asList(courseDTOs) : null;
+    }
+
+    public CourseDTO viewCourseById(Long courseId) {
+        logger.info("Requesting course with id: {}", courseId);
+        CourseDTO courseDto = restTemplate.getForObject("http://localhost:9040/course/getById/" + courseId, CourseDTO.class);
+        logger.info("Received course: {}", courseDto);
+        return courseDto;
+    }
+
 }

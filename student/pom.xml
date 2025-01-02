@@ -12,7 +12,7 @@
 	<artifactId>student</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>student</name>
-	<description>Demo Configuration Server  project for Spring Boot Microservices</description>
+	<description>Configuration Server  project for Student Spring Boot Microservices</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -55,6 +55,7 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
