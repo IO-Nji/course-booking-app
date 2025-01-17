@@ -5,21 +5,18 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.nji.booking.dto.BookingDTO;
+import io.nji.booking.mapper.BookingMapper;
+import io.nji.booking.repository.BookingRepository;
 import io.nji.booking.service.BookingService;
 import io.nji.booking.validator.BookingValidator;
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/booking")
@@ -30,6 +27,12 @@ public class BookingController {
 
     @Autowired
     private BookingValidator bookingValidator;
+
+    @Autowired
+    private BookingMapper bookingMapper;
+
+    @Autowired
+    private BookingRepository bookingRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(BookingController.class);
 
@@ -47,13 +50,12 @@ public class BookingController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> saveBooking(@Valid @RequestBody BookingDTO bookingDTO, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return bookingValidator.handleValidationExceptions(bindingResult);
-        }
-        bookingService.saveBooking(bookingDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(bookingDTO);
-    }   
+    public void saveBooking(BookingDTO bookingDTO) {
+        logger.info("Received booking: {}", bookingDTO);
+        bookingValidator.validator(bookingDTO);
+        bookingRepository.save(bookingMapper.toEntity(bookingDTO));
+        logger.info("Saved booking: {}", bookingDTO);
+    } 
 
     @DeleteMapping("/delete/{id}")
     public void deleteBooking(@PathVariable("id") Long bookingId) {

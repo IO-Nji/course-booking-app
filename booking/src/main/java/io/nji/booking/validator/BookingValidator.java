@@ -1,25 +1,42 @@
 package io.nji.booking.validator;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
+
+import io.nji.booking.dto.BookingDTO;
 
 @Component
 public class BookingValidator {
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<?> handleValidationExceptions(BindingResult bindingResult) {
-        Map<String, String> errors = new HashMap<>();
-        bindingResult.getFieldErrors().forEach(error -> errors.put(error.getField(), error.getDefaultMessage()));
-        return ResponseEntity.badRequest().body(errors);
+        @Autowired
+        private RestTemplate restTemplate;
+
+        public void validator(BookingDTO bookingDTO) {
+            // Check if the student exists
+            String studentServiceUrl = "http://localhost:9050/students/getById/" + bookingDTO.getStudentId();
+            try {
+                ResponseEntity<Void> studentResponse = restTemplate.getForEntity(studentServiceUrl, Void.class);
+                if (!studentResponse.getStatusCode().is2xxSuccessful()) {
+                    throw new RuntimeException("Student not found with id: " + bookingDTO.getStudentId());
+                }
+            } catch (HttpClientErrorException e) {
+                throw new RuntimeException("Student not found with id: " + bookingDTO.getStudentId());
+            }
+    
+            // Check if the course exists
+            String courseServiceUrl = "http://localhost:9040/courses/getById/" + bookingDTO.getCourseId();
+            try {
+                ResponseEntity<Void> courseResponse = restTemplate.getForEntity(courseServiceUrl, Void.class);
+                if (!courseResponse.getStatusCode().is2xxSuccessful()) {
+                    throw new RuntimeException("Course not found with id: " + bookingDTO.getCourseId());
+                }
+            } catch (HttpClientErrorException e) {
+                throw new RuntimeException("Course not found with id: " + bookingDTO.getCourseId());
+            }
+        }
     }
 
-}
+
